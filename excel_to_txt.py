@@ -1,5 +1,4 @@
 import pandas as pd
-from openpyxl.utils import column_index_from_string
 
 
 def excel_to_txt(package_numbers: list, row_numbers: list,
@@ -29,11 +28,10 @@ def excel_to_txt(package_numbers: list, row_numbers: list,
     with open(output_path, 'w', encoding='utf-8') as f:
         for idx, (_, row) in enumerate(df_filtered.iterrows(), 1):
             f.write(f"Liczba pozycyjna: {idx}\n")
-            f.write(f"Treść zgłoszenia: {row.iloc[
-                column_index_from_string('E') - 1]}\n")
-            f.write(f"Moduł: {row.iloc[column_index_from_string('D') - 1]}\n")
-            f.write(f"Streszczenie korespondencji: {row.iloc[
-                column_index_from_string('F') - 1]}")
+            f.write(f"Treść zgłoszenia: {row['Treść zgłoszenia']}\n")
+            f.write(f"Moduł: {row['Moduł']}\n")
+            f.write(f"Streszczenie korespondencji: {row[
+                'Streszczenie korespondencji ']}")
             f.write("-"*40 + "\n\n")
 
 
